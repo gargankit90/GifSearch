@@ -29,18 +29,12 @@ public class GifSearchApplication extends Application {
         mRealm = Realm.getInstance(realmConfig);
         // Check if db has been created and add data to db if it doesnt exist.
         RealmHelper.addDatatoDB(this);
-//        mQueue = Volley.newRequestQueue(this);
 
     }
 
     public static Realm getmRealm() {
         return mRealm;
     }
-
-//    public static RequestQueue getmQueue() {
-//        return mQueue;
-//    }
-
     public static GifSearchApplication getInstance(){
         return mInstance;
     }

@@ -7,9 +7,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,8 +31,6 @@ import butterknife.ButterKnife;
 
 public class SearchActivity extends AppCompatActivity implements SearchSuggestionDialog.onItemSearch {
 
-//    @Bind(R.id.activitySearchEt)
-//    EditText activitySearchEt;
     SearchSuggestionDialog searchSuggestionDialog;
     private boolean isDialogShown = false;
     FragmentManager fragmentManager;
@@ -58,13 +53,13 @@ public class SearchActivity extends AppCompatActivity implements SearchSuggestio
     public void onSearchItem(String searchTxt) {
         // Take the search text and make network calls for it.
         removeDialog();
+        // Add api key and create the url to invoke the request.
         String url = Constants.GIPHY_URL + "?q=" +searchTxt + "&api_key=" +Constants.GIPHY_API_KEY;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,(String)null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     ArrayList<ImageModel> imgModels = ImageModel.parseJSONObjects(response);
-                    Toast.makeText(SearchActivity.this,"Length :"+imgModels.size(), Toast.LENGTH_LONG).show();
                     mAdapter = new GifRecycleViewAdapter(imgModels);
                     recyclerView.setAdapter(mAdapter);
                 } catch (JSONException e) {

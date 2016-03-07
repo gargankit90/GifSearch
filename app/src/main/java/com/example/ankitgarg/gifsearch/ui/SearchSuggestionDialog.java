@@ -27,15 +27,13 @@ public class SearchSuggestionDialog extends DialogFragment implements SearchAdap
 
     public static SearchSuggestionDialog newInstance() {
         SearchSuggestionDialog frag = new SearchSuggestionDialog();
-//        Bundle args = new Bundle();
-//        args.putString("title", title);
-//        frag.setArguments(args);
         return frag;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Done to keep the fragment full size.
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
     }
 
@@ -86,7 +84,6 @@ public class SearchSuggestionDialog extends DialogFragment implements SearchAdap
     @Override
     public void onSearchItemClick(String searchTxt) {
         mCallback.onSearchItem(searchTxt);
-//        getDialog().dismiss();
     }
 
     public interface onItemSearch {
